@@ -1,6 +1,51 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script type="text/javascript">
+            hljs.registerLanguage("luau", function(hljs) {
+                return {
+                    name: "Luau",
+                    aliases: ["lua"],
+                    keywords: {
+                    keyword:
+                        "and break do else elseif end false for function if in local nil not or repeat return then true until while",
+                    built_in:
+                        "game workspace script wait print require spawn coroutine pairs ipairs typeof tonumber tostring Vector3 Instance CFrame FindFirstChild initPersModule _G"
+                    },
+                    contains: [
+                    hljs.COMMENT("--", "$"),
+                    hljs.COMMENT("--\\[\\[", "\\]\\]"),
+                    {
+                        className: "string",
+                        begin: '"', end: '"',
+                        contains: [{ begin: '\\\\.' }]
+                    },
+                    {
+                        className: "string",
+                        begin: "'", end: "'",
+                        contains: [{ begin: '\\\\.' }]
+                    },
+                    {
+                        className: "number",
+                        begin: "\\b(\\d+\\.\\d+|\\d+)\\b"
+                    },
+                    {
+                        className: "function",
+                        beginKeywords: "function",
+                        end: "end",
+                        contains: [
+                        hljs.inherit(hljs.TITLE_MODE, { begin: "[A-Za-z_]\\w*" }),
+                        { begin: "\\(", end: "\\)", contains: ["self"] }
+                        ]
+                    }
+                    ]
+                };
+            });
+	        hljs.highlightAll();
+        </script>
+
         <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body>
@@ -12,7 +57,14 @@
             <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
             <div style="height:20px"></div>
             <h1 style="color: rgb(236, 236, 236);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Initiation</h1>
-            <i><p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule is a library of several modules - </p></i>
+            <i><p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule is a library of several modules. Manually requiring all of these modules can be impractical, and can create for unmaintainable base code. PersModule has a solution for this:</p></i>
+            <pre><code class="language-luau" id="codebox">local pathToLibrary = game.ServerStorage:FindFirstChild("PersModule")
+local assetManagerModules = require(pathToLibrary:FindFirstChild("assetManager"))
+
+assetManager.initPersModule()
+print(_G.PersModule) -- Prints all of the PersModule library functions</code></pre>
+            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule's modules are only accessible on the server.</p></small>
+            
         </div>
         <div id="sidechick">
             <h3 id="title">PersModule</h3>
