@@ -22,6 +22,11 @@
     margin-left: 30px;
     width: calc(100% - 90px)
 }
+.adjusted {
+    position: relative;
+    top: -275px;
+}
+
 #title {
     color: rgb(255,255,255);
     text-align: center;
@@ -36,6 +41,8 @@
     width: calc(100vw - 220px);
     height: calc(100vh - 20px);
     z-index: 4;
+    overflow-y:auto;
+    overflow-x: hidden;
 }
 
 .sidebuttons {

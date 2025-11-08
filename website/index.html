@@ -12,7 +12,7 @@
                     keyword:
                         "and break do else elseif end false for function if in local nil not or repeat return then true until while",
                     built_in:
-                        "game workspace script wait print require spawn coroutine pairs ipairs typeof tonumber tostring Vector3 Instance CFrame FindFirstChild initPersModule _G"
+                        "game workspace script wait print require spawn coroutine pairs ipairs typeof tonumber tostring Vector3 Instance CFrame FindFirstChild initPersModule _G init"
                     },
                     contains: [
                     hljs.COMMENT("--", "$"),
@@ -50,7 +50,7 @@
     </head>
     <body>
         <div id="withinbox"></div>
-        <div class="SubSection" id="Introduction" style="display:block">
+        <div class="SubSection" id="Introduction" style="display:none">
             <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Introduction</h1>
             <i><p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule is offered without warranty, and is maintained at the discresion of thepersonone134. It is expected that the function of the modules will work indefinitely - however this is not guaranteed.</p></i>
             <div style="height:20px"></div>
@@ -63,34 +63,64 @@ local assetManagerModules = require(pathToLibrary:FindFirstChild("assetManager")
 
 assetManager.initPersModule()
 print(_G.PersModule) -- Prints all of the PersModule library functions</code></pre>
-            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule's modules are only accessible on the server.</p></small>
+            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule's modules are only accessible on the server. Aforementioned code must be ran in a server script.</p></small>
+        </div>
+        <div class="SubSection" id="persmodule" style="display:none">
+            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">_G.PersModule</h1>
+            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">So now we understand how to get _G.PersModule but, <b>what</b> is actually stored with _G.PersModule?</p>
+            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;position:relative;top:-7px;">If you haven't got a clue what _G.PersModule is, then it is recommended that you re-read the previous chapter..</p></small>
+            <div style="height:20px"></div>
+            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
+            <div style="height:20px"></div>
+            <i><p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Within every category of module, there are many child modules. When the _G.PersModule variable is set, the functions from the child modules inherit the parent folder name.</p></i>
+            <img src="../data/ExampleDirectory.png" style="border-radius: 10px;padding-left: 30px;position: relative;"alt="Example of a PersModule version's directory">
+            <p style="color: rgb(204, 204, 204);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative; top: -375px">_G.PersModule will compile the modules as:</p>
+            <small><p style="color: rgb(155, 155, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative; top: -385px">mouseFollow functions would be listed under mouseFollowingSystem</p></small>
+            <small><p style="color: rgb(155, 155, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative; top: -395px">controllerModule functions would be listed under seatSystems</p></small>
+            <small><p style="color: rgb(155, 155, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative; top: -405px">mouseController functions would be listed under turretSystems</p></small>
+            <small><p style="color: rgb(155, 155, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative; top: -415px">riggerModule functions would be listed under turretSystems</p></small>
+            <small><p style="color: rgb(155, 155, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative; top: -425px">smoothSailor functions would be listed under turretSystems</p></small>
+            <small><p style="color: rgb(155, 155, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative; top: -435px">downloader functions would be listed under utils</p></small>
+            <small><p style="color: rgb(155, 155, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative; top: -445px">printFormat functions would be listed under utils</p></small>
+            <p style="color: rgb(204, 204, 204);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative; top: -435px"><b>et cetera</b>, this pattern of child modules inheriting their parent's name when formatted into _G.PersModule will continue - <i>even for new modules added after this documentation is written.</i></p>
+            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px; top: -275px; position:relative;"></div>
+            <div class="adjusted" style="height:20px"></div>
+            <h1 class="adjusted" style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Functionally:</h1>
+            <pre><code class="adjusted" class="language-luau" id="codebox">local PersModule = _G.PersModule
+PersModule.seatSystems:init()
+-- Function init from seatController module has inherited the folder name "seatSystems"</code></pre>
+            <small><p class="adjusted" style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">:init() is not a real function, do not attempt to utilise :init() in practice.</p></small>
+        </div>
+        <div class="SubSection" id="persmodule" style="display:block">
             
         </div>
         <div id="sidechick">
             <h3 id="title">PersModule</h3>
             <div class="sidebuttons">
                 <button class="sidebuttons" id="Introduction" style="position:fixed; left: 10px;top:100px; width: 200px">Introduction</button>
+                <button class="sidebuttons" id="persmodule" style="position:fixed; left: 10px;top:120px; width: 200px">_G.PersModule</button>
 
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:165px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">mouseFollowingSystem<button>
-                <button class="sidebuttons" id="mouseFollow" style="position:fixed; left: 10px;top:185px; width: 200px">mouseFollow</button>
+                <button class="sidebuttons" style="position:fixed; left: 10px;top:185px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">mouseFollowingSystem<button>
+                <button class="sidebuttons" id="mouseFollow" style="position:fixed; left: 10px;top:205px; width: 200px">mouseFollow</button>
 
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:225px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">seatSystems<button>
-                <button class="sidebuttons" id="controllerModule" style="position:fixed; left: 10px;top:245px; width: 200px">controllerModule</button>
+                <button class="sidebuttons" style="position:fixed; left: 10px;top:245px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">seatSystems<button>
+                <button class="sidebuttons" id="controllerModule" style="position:fixed; left: 10px;top:265px; width: 200px">controllerModule</button>
 
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:295px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">turretSystems<button>
-                <button class="sidebuttons" id="mouseController" style="position:fixed; left: 10px;top:315px; width: 200px">mouseController</button>
-                <button class="sidebuttons" id="riggerModule" style="position:fixed; left: 10px;top:335px; width: 200px">riggerModule</button>
-                <button class="sidebuttons" id="smoothSailor" style="position:fixed; left: 10px;top:355px; width: 200px">smoothSailor</button>
+                <button class="sidebuttons" style="position:fixed; left: 10px;top:315px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">turretSystems<button>
+                <button class="sidebuttons" id="mouseController" style="position:fixed; left: 10px;top:335px; width: 200px">mouseController</button>
+                <button class="sidebuttons" id="riggerModule" style="position:fixed; left: 10px;top:355px; width: 200px">riggerModule</button>
+                <button class="sidebuttons" id="smoothSailor" style="position:fixed; left: 10px;top:375px; width: 200px">smoothSailor</button>
 
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:405px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">utils</button>
-                <button class="sidebuttons" id="downloader" style="position:fixed; left: 10px;top:425px; width: 200px">downloader</button>
-                <button class="sidebuttons" id="printFormat" style="position:fixed; left: 10px;top:445px; width: 200px">printFormat</button>
+                <button class="sidebuttons" style="position:fixed; left: 10px;top:425px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">utils</button>
+                <button class="sidebuttons" id="downloader" style="position:fixed; left: 10px;top:445px; width: 200px">downloader</button>
+                <button class="sidebuttons" id="printFormat" style="position:fixed; left: 10px;top:465px; width: 200px">printFormat</button>
 
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:495px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">weaponsSystems</button>
-                <button class="sidebuttons" id="ModuleAA" style="position:fixed; left: 10px;top:515px; width: 200px">ModuleAA</button>
+                <button class="sidebuttons" style="position:fixed; left: 10px;top:515px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">weaponsSystems</button>
+                <button class="sidebuttons" id="ModuleAA" style="position:fixed; left: 10px;top:535px; width: 200px">ModuleAA</button>
             </div>
         </div>
         <div id="line"></div>
-        <div id="line" style="top: 140px;"></div>
+        <div id="line" style="top: 160px;"></div>
     </body>
+    <script src="../src/backend.js"></script>
 </html>
