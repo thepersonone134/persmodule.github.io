@@ -98,3 +98,25 @@ button {
 <div id="top">
             <h1>PersModule Documentation</h1>
         </div>
+
+
+Deprecated
+<div class="deprecated" style="background-color: rgb(255, 57, 57); left:30px; width:50%; height: 50px; position: relative;border-radius: 10px;">
+                <img src="../data/Warning.png" style="float:left; width: 50px; position: relative;" alt="Warning Icon">
+                <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 2px; top: 3px; position: relative;">Deprecated</h1>
+                <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; left: 2px; position: relative;top:-12px">mouseFollow has been superceded by mouseFollow</p>
+            </div>
+
+New Module
+
+<div class="deprecated" style="background-color: rgb(57, 126, 255); left:30px; width:60%; height: 50px; position: relative;border-radius: 10px;">
+                <img src="../data/New.png" style="float:left; height: 50px; position: relative;" alt="Warning Icon">
+                <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 2px; top: 3px; position: relative;">New Module</h1>
+                <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; left: 2px; font-size:14px; position: relative;top:-12px">This module is new - it may have infastructure which differs from other modules</p>
+            </div>
+
+OOP
+<div class="deprecated" style="background-color: rgb(112, 36, 0); left:30px; width:60%; height: 50px; position: relative;border-radius: 10px;">
+                <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 10px; top: 3px; position: relative;">Object Oriented Programming</h1>
+                <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; left: 10px; font-size:14px; position: relative;top:-12px">The _G.PersModule copy of this module cannot be used.</p>
+            </div>
