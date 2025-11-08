@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500;600;700;800&display=swap');
+
+/*
+500 - Medium
+600 - Semi Bold
+700 - Bold
+800 - More Bold
+*/
+
+#withinbox {
+    background-color: rgb(25, 25, 25);
+    position:fixed;
+    width: calc(100vw - 20px);
+    height: calc(100vh - 20px);
+    left: 10px;
+    top: 10px;
+    border-radius: 10px;
+    z-index: 1;
+}
+#title {
+    color: rgb(255,255,255);
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+}
+
+.SubSection {
+    position:fixed;
+    top: 10px;
+    left: 210px;
+    width: calc(100vw - 220px);
+    height: calc(100vh - 20px);
+    z-index: 4;
+}
+
+.sidebuttons {
+    color: rgb(255,255,255);
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+#sidechick {
+    background-color: rgb(35, 35, 35);
+    position:fixed;
+    left: 10px;
+    top: 10px;
+    height: calc(100vh - 20px);
+    width: 200px;
+    border-radius: 10px;
+    z-index: 3;
+}
+
+#line {
+    position:fixed;
+    height: 2px;
+    left: 36px;
+    top: 75px;
+    width: 150px;
+    border-radius: 10px;
+    background-color: rgb(125, 125, 125);
+    z-index: 4;
+}
+
+/*
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}*/
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    background-color: rgb(20,20,20);
+}
+
+button {
+    background-color: rgb(35,35,35);
+    border: none;
+}
+/*
+<p style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Hello mates</p>
+
+<div id="top">
+            <h1>PersModule Documentation</h1>
+        </div>
