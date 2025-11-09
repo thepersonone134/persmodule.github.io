@@ -74,6 +74,44 @@ local PersModule = _G.PersModule
 print(_G.PersModule == PersModule) -- true</code></pre>
             <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">It's as shrimple as that!</p></small>
         </div>
+        <div class="SubSection" id="complexities" style="display:none">
+            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Complexities</h1>
+            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">This section has not been placed in order of recommended viewing - it is recommended to read this section if: you are looking for more context on how PersModule can be used for your application; or, on how to handle modules labelled with <b>Object Oriented Programming</b>.</p></small>
+            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule's global variable works great for server and for general utility modules - but what if your application of PersModule doesn't match either of these? That is what this section is for:</p>
+            <div style="height:20px"></div>
+            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
+            <div style="height:20px"></div>
+            <h1 style="color: rgb(236, 236, 236);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Handling Object Oriented Programming modules</h1>
+            <i><p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">This is necessary because PersModule's global variable includes <b>only</b> one instance of the module (and its functions). This kind of infastructure is incompatible with OOP as the self keyword is related to the instance of module - so if many weapons call an OOP module (using the same instance of module), the self keyword will be overridden by each weapon when it calls a function of the OOP module.</p></i>
+            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule has a solution for this!</p>
+            <pre><code class="language-luau" id="codebox">repeat task.wait() until _G.PersModule -- Yield until PersModule is loaded
+local PersModule = _G.PersModule
+local seatSystems = PersModule.utils.requireModule("controllerModule","seatSystems") -- say for instance we want the controller module
+print(seatSystems == PersModule.seatSystems) -- false, because we have a new instance of the module!
+</code></pre>
+            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">An example of how you might want to do this - <b>for more information view utils >> downloader >> methods >> module.requireModule</b></p></small>
+            <div style="height:20px"></div>
+            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
+            <div style="height:20px"></div>
+            <h1 style="color: rgb(236, 236, 236);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Replicating PersModule modules onto the client</h1>
+            <i><p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">By default, PersModule modules will never be accessible on the client (because there is usually no benefit for having them stored on the client). However, what if we want a module to act client-side so that turret movement can be smoother?</p></i>
+            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule yet again has a native solution for this!</p>
+            <pre><code class="language-luau" id="codebox">repeat task.wait() until _G.PersModule -- Yield until PersModule is loaded
+local PersModule = _G.PersModule
+PersModule.utils.requireModuleClientSide("mouseFollow",player,{["origin"]="mouseFollowingSystem"})
+-- say for instance we want the mouseFollow module on the client
+-- client now has access to the module
+</code></pre>
+            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">An example of how you might want to do this - <b>for more information view utils >> downloader >> methods >> module.requireModuleClientSide</b></p></small>
+            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">BUT WAIT! The way that the global variable is formatted differs on the client.</p>
+            <i><p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">The client-side _G.PersModule variable is formatted in a way so that child modules no longer inherit their parent folder's name. </p></i>
+            <pre><code class="language-luau" id="codebox">repeat task.wait() until _G.PersModule -- Yield until PersModule is loaded
+local PersModule = _G.PersModule
+PersModule.mouseFollow.handleTraverse(targetCFrame, motor6d, root, traverse)
+-- For example, mouseFollow, a module which is commonly replicated to the client.
+</code></pre>
+            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">An example of how you would use _G.PersModule on the client.</b></p></small>
+        </div>
         <div class="SubSection" id="persmodule" style="display:none">
             <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">_G.PersModule</h1>
             <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">So now we understand how to get _G.PersModule but, <b>what</b> is actually stored with _G.PersModule?</p>
@@ -104,17 +142,17 @@ PersModule.seatSystems:init()
         </div>
         <div class="SubSection" id="mouseFollow" style="display:none">
             <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">mouseFollow</h1>
-            <div class="deprecated" style="background-color: rgb(100, 100, 100); left:30px; width:60%; height: 70px; position: relative;border-radius: 10px;">
+            <div class="deprecated" style="background-color: rgb(100, 100, 100); left:30px; width:60%; position: relative;border-radius: 10px;">
                 <img src="data/Issues.png" style="float:left; left: 5px;width: 30px; position: relative;" alt="Warning Icon">
                 <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 10px; top: 3px; position: relative;">Not completely functional</h1>
                 <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; left: 5px; position: relative;top:-12px">This module has been known to have issues - mouseFollow still remains stable, but function may not be completely satisfactory at the moment.</p>
             </div>
-            <div class="deprecated" style="background-color: rgb(57, 126, 255); left:30px; width:60%; height: 50px; position: relative;border-radius: 10px;">
+            <div class="deprecated" style="background-color: rgb(57, 126, 255); left:30px; width:60%; position: relative;border-radius: 10px;">
                 <img src="data/New.png" style="float:left; height: 50px; position: relative;" alt="Warning Icon">
                 <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 2px; top: 3px; position: relative;">New Module</h1>
                 <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; left: 2px; font-size:14px; position: relative;top:-12px">This module is new - it may have infastructure which differs from other modules</p>
             </div>
-            <div class="deprecated" style="background-color: rgb(112, 36, 0); left:30px; width:60%; height: 50px; position: relative;border-radius: 10px;">
+            <div class="deprecated" style="background-color: rgb(112, 36, 0); left:30px; width:60%; position: relative;border-radius: 10px;">
                 <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 10px; top: 3px; position: relative;">Object Oriented Programming</h1>
                 <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; left: 10px; font-size:14px; position: relative;top:-12px">The _G.PersModule copy of this module cannot be used.</p>
             </div>
@@ -141,7 +179,7 @@ PersModule.seatSystems:init()
         </div>
         <div class="SubSection" id="controllerModule" style="display:none">
             <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">controllerModule</h1>
-            <div class="deprecated" style="background-color: rgb(112, 36, 0); left:30px; width:60%; height: 50px; position: relative;border-radius: 10px;">
+            <div class="deprecated" style="background-color: rgb(112, 36, 0); left:30px; width:60%; position: relative;border-radius: 10px;">
                 <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 10px; top: 3px; position: relative;">Object Oriented Programming</h1>
                 <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; left: 10px; font-size:14px; position: relative;top:-12px">The _G.PersModule copy of this module cannot be used.</p>
             </div>
@@ -169,7 +207,7 @@ seatSystems:handleInteraction()</code></pre>
         </div>
         <div class="SubSection" id="mouseController" style="display:none">
             <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">mouseController</h1>
-            <div class="deprecated" style="background-color: rgb(255, 57, 57); left:30px; width:50%; height: 50px; position: relative;border-radius: 10px;">
+            <div class="deprecated" style="background-color: rgb(255, 57, 57); left:30px; width:50%; position: relative;border-radius: 10px;">
                 <img src="data/Warning.png" style="float:left; width: 50px; position: relative;" alt="Warning Icon">
                 <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 2px; top: 3px; position: relative;">Deprecated</h1>
                 <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; left: 2px; position: relative;top:-12px">mouseController has been superceded by mouseFollow</p>
@@ -300,12 +338,12 @@ seatSystems:handleInteraction()</code></pre>
         <div class="SubSection" id="smoothSailor" style="display:none">
             <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">smoothSailor</h1>
 
-            <div class="deprecated" style="background-color: rgb(255, 57, 57); left:30px; width:50%; height: 50px; position: relative;border-radius: 10px;">
+            <div class="deprecated" style="background-color: rgb(255, 57, 57); left:30px; width:50%; position: relative;border-radius: 10px;">
                 <img src="data/Warning.png" style="float:left; width: 50px; position: relative;" alt="Warning Icon">
                 <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 2px; top: 3px; position: relative;">Deprecated</h1>
                 <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; left: 2px; position: relative;top:-12px">smoothSailor has been superceded by riggerModule</p>
             </div>
-            <div class="deprecated" style="background-color: rgb(112, 36, 0); left:30px; width:50%; height: 50px; position: relative;border-radius: 10px;">
+            <div class="deprecated" style="background-color: rgb(112, 36, 0); left:30px; width:50%; position: relative;border-radius: 10px;">
                 <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 10px; top: 3px; position: relative;">Object Oriented Programming</h1>
                 <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; left: 10px; font-size:14px; position: relative;top:-12px">The _G.PersModule copy of this module cannot be used.</p>
             </div>
@@ -340,19 +378,19 @@ seatSystems:handleInteraction()</code></pre>
             <div>
                 <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.downloadAsset</b> (assetName: string, origin: string?): Instance | nil</p>
                 <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Clones the requested asset from PersModule's assets.</p>
-<p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;"><b>If no origin is specified</b>, downloader will look at the top of the asset hierarchy. It is acceptable to not inclue an origin parameter as a shorthand, but it is not recommended.</p>
+<p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;"><b>If no origin is specified</b>, downloader will look at the top of the asset hierarchy. It is acceptable to not include an origin parameter as a shorthand, but it is not recommended.</p>
                 <div style="height:2px"></div>
             </div>
             <div>
                 <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.requireModule</b> (assetName: string, origin: string?): {} | nil</p>
                 <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Requires a copy of a PersModule module.</p>
-<p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;"><b>If no origin is specified</b>, downloader will look at the top of the module hierarchy. It is acceptable to not inclue an origin parameter as a shorthand, but it is not recommended.</p>
+<p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;"><b>If no origin is specified</b>, downloader will look at the top of the module hierarchy. It is acceptable to not include an origin parameter as a shorthand, but it is not recommended.</p>
                 <div style="height:2px"></div>
             </div>
             <div>
                 <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.requireModuleClientSide</b> (assetName: string, player: Instance, args: {store: boolean?, origin: string?})</p>
                 <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Do not share modules with clients unless it is a necessity.</p>
-<p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;"><b>If no origin is specified</b>, downloader will look at the top of the module hierarchy. It is acceptable to not inclue an origin parameter as a shorthand, but it is not recommended.</p>
+<p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;"><b>If no origin is specified</b>, downloader will look at the top of the module hierarchy. It is acceptable to not include an origin parameter as a shorthand, but it is not recommended.</p>
                 <div style="height:2px"></div>
             </div>
         </div>
@@ -376,7 +414,7 @@ seatSystems:handleInteraction()</code></pre>
         </div>
         <div class="SubSection" id="ModuleAA" style="display:none">
             <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">ModuleAA</h1>
-            <div class="deprecated" style="background-color: rgb(112, 36, 0); left:30px; width:60%; height: 50px; position: relative;border-radius: 10px;">
+            <div class="deprecated" style="background-color: rgb(112, 36, 0); left:30px; width:60%; position: relative;border-radius: 10px;">
                 <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 10px; top: 3px; position: relative;">Object Oriented Programming</h1>
                 <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; left: 10px; font-size:14px; position: relative;top:-12px">The _G.PersModule copy of this module cannot be used.</p>
             </div>
@@ -410,28 +448,29 @@ seatSystems:handleInteraction()</code></pre>
             <div class="sidebuttons">
                 <button class="sidebuttons" id="Introduction" style="position:fixed; left: 10px;top:100px; width: 200px">Introduction</button>
                 <button class="sidebuttons" id="persmodule" style="position:fixed; left: 10px;top:120px; width: 200px">_G.PersModule</button>
+                <button class="sidebuttons" id="complexities" style="position:fixed; left: 10px;top:140px; width: 200px">Complexities</button>
 
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:185px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">mouseFollowingSystem<button>
-                <button class="sidebuttons" id="mouseFollow" style="position:fixed; left: 10px;top:205px; width: 200px">mouseFollow</button>
+                <button class="sidebuttons" style="position:fixed; left: 10px;top:205px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">mouseFollowingSystem<button>
+                <button class="sidebuttons" id="mouseFollow" style="position:fixed; left: 10px;top:225px; width: 200px">mouseFollow</button>
 
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:245px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">seatSystems<button>
-                <button class="sidebuttons" id="controllerModule" style="position:fixed; left: 10px;top:265px; width: 200px">controllerModule</button>
+                <button class="sidebuttons" style="position:fixed; left: 10px;top:265px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">seatSystems<button>
+                <button class="sidebuttons" id="controllerModule" style="position:fixed; left: 10px;top:285px; width: 200px">controllerModule</button>
 
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:315px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">turretSystems<button>
-                <button class="sidebuttons" id="mouseController" style="position:fixed; left: 10px;top:335px; width: 200px">mouseController</button>
-                <button class="sidebuttons" id="riggerModule" style="position:fixed; left: 10px;top:355px; width: 200px">riggerModule</button>
-                <button class="sidebuttons" id="smoothSailor" style="position:fixed; left: 10px;top:375px; width: 200px">smoothSailor</button>
+                <button class="sidebuttons" style="position:fixed; left: 10px;top:335px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">turretSystems<button>
+                <button class="sidebuttons" id="mouseController" style="position:fixed; left: 10px;top:355px; width: 200px">mouseController</button>
+                <button class="sidebuttons" id="riggerModule" style="position:fixed; left: 10px;top:375px; width: 200px">riggerModule</button>
+                <button class="sidebuttons" id="smoothSailor" style="position:fixed; left: 10px;top:395px; width: 200px">smoothSailor</button>
 
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:425px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">utils</button>
-                <button class="sidebuttons" id="downloader" style="position:fixed; left: 10px;top:445px; width: 200px">downloader</button>
-                <button class="sidebuttons" id="printFormat" style="position:fixed; left: 10px;top:465px; width: 200px">printFormat</button>
+                <button class="sidebuttons" style="position:fixed; left: 10px;top:445px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">utils</button>
+                <button class="sidebuttons" id="downloader" style="position:fixed; left: 10px;top:465px; width: 200px">downloader</button>
+                <button class="sidebuttons" id="printFormat" style="position:fixed; left: 10px;top:485px; width: 200px">printFormat</button>
 
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:515px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">weaponsSystems</button>
-                <button class="sidebuttons" id="ModuleAA" style="position:fixed; left: 10px;top:535px; width: 200px">ModuleAA</button>
+                <button class="sidebuttons" style="position:fixed; left: 10px;top:535px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">weaponsSystems</button>
+                <button class="sidebuttons" id="ModuleAA" style="position:fixed; left: 10px;top:555px; width: 200px">ModuleAA</button>
             </div>
         </div>
         <div id="line"></div>
-        <div id="line" style="top: 160px;"></div>
+        <div id="line" style="top: 180px;"></div>
     </body>
     <script src="src/backend.js"></script>
 </html>
