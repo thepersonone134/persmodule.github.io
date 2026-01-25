@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>PersModule</title>
+        <link rel="icon" type="image/x-icon" href="data/PersModule.png">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
         <script type="text/javascript">
@@ -12,7 +14,7 @@
                     keyword:
                         "and break do else elseif end false for function if in local nil not or repeat return then true until while",
                     built_in:
-                        "game workspace script wait print require spawn coroutine pairs ipairs typeof tonumber tostring Vector3 Instance CFrame FindFirstChild initPersModule _G init initInteraction handleInteraction"
+                        "game workspace script wait print require spawn coroutine pairs ipairs typeof tonumber tostring Vector3 Instance CFrame FindFirstChild WaitForChild initPersModule _G init initInteraction handleInteraction"
                     },
                     contains: [
                     hljs.COMMENT("--", "$"),
@@ -45,432 +47,601 @@
             });
 	        hljs.highlightAll();
         </script>
-
         <link rel="stylesheet" type="text/css" href="website/styles.css">
     </head>
-    <body>
-        <div id="withinbox"></div>
-        <div class="SubSection" id="Introduction" style="display:block">
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Introduction</h1>
-            <i><p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule is offered without warranty, and is maintained at the discresion of thepersonone134. It is expected that the function of the modules will work indefinitely - however this is not guaranteed.</p></i>
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(236, 236, 236);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Initiation</h1>
-            <i><p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule is a library of several modules. Manually requiring all of these modules can be impractical, and can create for unmaintainable base code. PersModule has a solution for this:</p></i>
-            <pre><code class="language-luau" id="codebox">local pathToLibrary = game.ServerStorage:FindFirstChild("PersModule")
-local assetManagerModules = require(pathToLibrary:FindFirstChild("assetManager"))
+    <body style="background-color: rgb(0, 5, 10);">
+        <div style="background-color: rgb(20, 30, 40); position: fixed; width: calc(100% - 20px); height: calc(100% - 20px); border-radius: 10px; padding: 0px; left: 10px; top: 10px; outline-width: 1.5px; outline-color: rgb(36, 50, 65); outline-style: solid; overflow-y: hidden;">
+            <div style="background-color: rgb(36, 50, 65); overflow-y: hidden; position: fixed; padding: 0%; left: 15px; top: 15px; width: 195px; height: calc(100% - 30px); border-radius: 10px; outline-color: rgb(54, 62, 71); outline-width: 1.5px; outline-style: solid;"></div>
+            <div style="overflow-y: auto; position: fixed; padding: 0%; left: 20px; top: 20px; width: 185px; height: calc(100% - 40px);">
+                <h2 id="titlePersModule">PersModule</h2>
+                <div class="aLine" style="width: calc(100% - 30px); height: 2px; margin-left: 15px; position: absolute; top: 45px;"></div>
+
+                <p class="textLeftLargerSide">The Manual</p>
+                <div class="aLine introduction" style="background-color: rgb(255,255,255); width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
+                <p class="textLeftSmallerSide sidebuttons introduction" style="margin-left: 25px;"><b style="color: rgb(255,255,255);">Introduction</b></p>
+                <div class="aLine persmodule" style="width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
+                <p class="textLeftSmallerSide sidebuttons persmodule" style="margin-left: 25px;">_G.PersModule</p>
+                <div class="aLine oop" style="width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
+                <p class="textLeftSmallerSide sidebuttons oop" style="margin-left: 25px;"><abbr title="Object Oriented Programming">OOP</abbr> modules</p>
+                <div class="aLine core" style="width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
+                <p class="textLeftSmallerSide sidebuttons core" style="margin-left: 25px;">Core</p>
+                <div class="aLine clients" style="width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
+                <p class="textLeftSmallerSide sidebuttons clients" style="margin-left: 25px;">Clients</p>
+
+                <p class="textLeftLargerSide"><abbr title="MouseFollowingModule">MFM</abbr></p>
+                <div class="aLine mousefollow" style="width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
+                <p class="textLeftSmallerSide sidebuttons mousefollow" style="margin-left: 25px;">mouseFollow</p>
+
+                <p class="textLeftLargerSide">seatSystems</p>
+                <div class="aLine controllermodule" style="width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
+                <p class="textLeftSmallerSide sidebuttons controllermodule" style="margin-left: 25px;">controllerModule</p>
+
+                <p class="textLeftLargerSide">turretSystems</p>
+                <div class="aLine mousecontroller" style="background-color: rgb(91, 97, 104);width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
+                <p class="textLeftSmallerSide sidebuttons mousecontroller" style="color: rgb(91, 97, 104); margin-left: 25px;">mouseController</p>
+                <div class="aLine smoothsailor" style="background-color: rgb(91, 97, 104);width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
+                <p class="textLeftSmallerSide sidebuttons smoothsailor" style="color: rgb(91, 97, 104); margin-left: 25px;">smoothSailor</p>
+                <div class="aLine riggermodule" style="width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
+                <p class="textLeftSmallerSide sidebuttons riggermodule" style="margin-left: 25px;">riggerModule</p>
+
+                <p class="textLeftLargerSide">utils</p>
+                <div class="aLine downloader" style="width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
+                <p class="textLeftSmallerSide sidebuttons downloader" style="margin-left: 25px;">downloader</p>
+                <div class="aLine printformat" style="width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
+                <p class="textLeftSmallerSide sidebuttons printformat" style="margin-left: 25px;">printFormat</p>
+
+                <p class="textLeftLargerSide"><abbr title="weaponsSystems">weapons</abbr></p>
+                <div class="aLine moduleaa" style="width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
+                <p class="textLeftSmallerSide sidebuttons moduleaa" style="margin-left: 25px;">ModuleAA</p>
+
+                <p class="textLeftLargerSide">radar</p>
+                <div class="aLine radarinit" style="width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
+                <p class="textLeftSmallerSide sidebuttons radarinit" style="margin-left: 25px;">init</p>
+            </div>
+            <div id="Holder" style="overflow-y: auto; position: fixed; padding: 0%; left: 215px; top: 15px; width: calc(100% - 230px); height: calc(100% - 30px);">
+                <div id="BackToTop" style="opacity: 0; cursor: pointer; display: inline; overflow-y: hidden; overflow-x: hidden; width: 200px; height: 50px; margin-top: -9px; background-color: rgb(36, 50, 65); position: fixed; left: calc(100% - 230px); border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); z-index: 50;">
+                    <img src="data/ArrowIn.png" style="width: 50px; height: 100%; float: left; rotate: 180deg;"></img>
+                    <p style="height: 100%; width: calc(100% - 50px); color: rgb(222, 245, 255); font-weight: 500; text-align: center;">Back to top</p>
+                </div>
+                <div class="subSection introduction" style="opacity: 1; display: inline;">
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Introduction</h1>
+                    <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); ">
+                    </div>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">PersModule is a private Luau library maintained by thepersonone134. The library is a collection of general purpose and specialised modules which control all aspects of gameplay. This documentation is for developers that are using PersModule in their own creations. It is forbidden that this document is used to find exploits, or for used to reverse engineer PersModule.</p>
+                    <div style="height: 10px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Statement</h1>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">PersModule integration requires a good baseline of knowledge in programming. The modules in the library do not infer information from your arguments. Any questions relating to this documentation should be passed onto thepersonone134.</p>
+                    <div style="height: 10px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Organisation of this document</h1>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">This document has been split between the core ideas of PersModule and PersModule's modules. After "The Manual", the titles of each category are the names of the folders which contain the modules. </p>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Most sub-categories in "The Manual" express key ideas however, "Core" is documentation for a group of critical and general modules nicknamed "Core Modules".</p>
+                </div>
+                <div class="subSection persmodule" style="opacity: 0; display: none;">
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">_G.PersModule</h1>
+                    <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); ">
+                    </div>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">For ease of access, PersModule is stored as a global variable on the server.</p>
+                    <div style="height: 10px;"></div>
+
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Initiation</h1>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Before PersModule can be stored as a global variable, it must be initialised by a server script.</p>
+                    <pre><code class="language-luau codebox">local pathToLibrary = game.ServerStorage:WaitForChild("PersModule")
+local assetManagerModules = require(pathToLibrary:WaitForChild("assetManager"))
 
 assetManager.initPersModule()
 print(_G.PersModule) -- Prints all of the PersModule library functions</code></pre>
-            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule's modules are only accessible on the server. Aforementioned code must be ran in a server script.</p></small>
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(236, 236, 236);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Using PersModule</h1>
-            <i><p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule stores it's functions as a global variable on the server (_G.PersModule) - but how can we actually access this in a server script?</p></i>
-            <pre><code class="language-luau" id="codebox">repeat task.wait() until _G.PersModule -- Yield until PersModule is loaded
+                    <small><p style="color: rgb(53, 63, 71);font-family: 'Montserrat', sans-serif; padding-left: 25px;">PersModule's modules are only accessible on the server. Aforementioned code must be ran in a server script.</p></small>
+                    <div style="height: 10px;"></div>
+
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">The functions within _G.PersModule</h1>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">The PersModule global variable is formatted so that the modules inherit the name of their parent folder.</p>
+                    <img src="data/ExampleDirectory.png" style="float:left; border-radius: 6px; left: 25px;position: relative; outline-width: 1.5px; outline-color: rgb(53, 67, 73); outline-style: solid;"alt="Example of a PersModule version's directory">
+                    <div style="height:10px"></div>
+                    <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative;" outline-style: solid;>_G.PersModule will compile the modules as:</p>
+                    <small><p style="color: rgb(127, 146, 155); font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">mouseFollow functions would be listed under mouseFollowingSystem</p></small>
+                    <small><p style="color: rgb(127, 146, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">controllerModule functions would be listed under seatSystems</p></small>
+                    <small><p style="color: rgb(127, 146, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">mouseController functions would be listed under turretSystems</p></small>
+                    <small><p style="color: rgb(127, 146, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">riggerModule functions would be listed under turretSystems</p></small>
+                    <small><p style="color: rgb(127, 146, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">smoothSailor functions would be listed under turretSystems</p></small>
+                    <small><p style="color: rgb(127, 146, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">downloader functions would be listed under utils</p></small>
+                    <small><p style="color: rgb(127, 146, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">printFormat functions would be listed under utils</p></small>
+                    <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative"><b>et cetera</b>, this pattern of child modules inheriting their parent's name when formatted into _G.PersModule will continue - <i>even for new modules added after this documentation is written.</i></p>
+                    <div style="height:75px"></div>
+                    
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Using _G.PersModule</h1>
+                    <pre><code class="language-luau codebox">repeat task.wait() until _G.PersModule -- Yield until PersModule is available
 local PersModule = _G.PersModule
-print(_G.PersModule == PersModule) -- true</code></pre>
-            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">It's as shrimple as that!</p></small>
-        </div>
-        <div class="SubSection" id="complexities" style="display:none">
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Complexities</h1>
-            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">This section has not been placed in order of recommended viewing - it is recommended to read this section if: you are looking for more context on how PersModule can be used for your application; or, on how to handle modules labelled with <b>Object Oriented Programming</b>.</p></small>
-            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule's global variable works great for server and for general utility modules - but what if your application of PersModule doesn't match either of these? That is what this section is for:</p>
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(236, 236, 236);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Handling Object Oriented Programming modules</h1>
-            <i><p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">This is necessary because PersModule's global variable includes <b>only</b> one instance of the module (and its functions). This kind of infastructure is incompatible with OOP as the self keyword is related to the instance of module - so if many weapons call an OOP module (using the same instance of module), the self keyword will be overridden by each weapon when it calls a function of the OOP module.</p></i>
-            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule has a solution for this!</p>
-            <pre><code class="language-luau" id="codebox">repeat task.wait() until _G.PersModule -- Yield until PersModule is loaded
+PersModule.utils.beautifulPrint({
+    "I",
+    "Goon",
+    "To",
+    "Blue",
+    "Archive",
+})
+-- Function beautifulPrint from utils's printFormat module has inherited the folder name "utils"</code></pre>
+                    <small><p style="color: rgb(53, 63, 71);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Aforementioned code must be ran in a server script.</p></small>
+                </div>
+                <div class="subSection oop" style="opacity: 0; display: none;">
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Object Oriented Programming</h1>
+                    <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); "></div>
+                    <div style="height:25px"></div>
+                    <div class="deprecated" style="overflow-y: hidden;background-color: rgb(212, 104, 14); left:30px; width:calc(100% - 50px); position: relative;border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(255, 187, 131);">
+                        <h1 style="color: rgb(214, 125, 52);font-family: 'Montserrat', sans-serif; font-weight: 900;font-size: 75px; margin-left: 20px;top: clamp(-75px, -75px, -100%); position: absolute; text-align: center; z-index: 0;">OOP OOP OOP OOP OOP OOP OOP OOP</h1>
+                        <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; position: relative; z-index: 1; text-align: center; width: 100%;">This module should not be accessed from the global variable.</p>
+                    </div>  
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">This sub-category is a recommended read for modules marked with "Object Oriented Programming" - using the default copy of PersModule via _G.PersModule is not acceptable.</p>   
+                    <div style="height:25px"></div>
+
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Why are <abbr title="Object Oriented Programming">OOP</abbr> modules treated differently?</h1>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Instance references such as "self" are attached to the instance of the module. _G.PersModule provides a central and single copy of a module for use across scripts across the entirety of the workspace. If multiple scripts call and use the same copy of the OOP module, there may be conflicts.</p>
+                    <small><p style="color: rgb(73, 87, 94); width: calc(100% - 50px); padding-left: 25px;">Recently, some OOP modules have been changing to a new framework, which allows one module instance to handle many scripts. If this is the case, it will say explicitly on the page.</p></small>
+                    
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Handling <abbr title="Object Oriented Programming">OOP</abbr> modules</h1>
+                    <pre><code class="language-luau codebox">repeat task.wait() until _G.PersModule -- Yield until PersModule is loaded
 local PersModule = _G.PersModule
 local seatSystems = PersModule.utils.requireModule("controllerModule","seatSystems") -- say for instance we want the controller module
 print(seatSystems == PersModule.seatSystems) -- false, because we have a new instance of the module!
 </code></pre>
-            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">An example of how you might want to do this - <b>for more information view utils >> downloader >> methods >> module.requireModule</b></p></small>
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(236, 236, 236);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Replicating PersModule modules onto the client</h1>
-            <i><p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">By default, PersModule modules will never be accessible on the client (because there is usually no benefit for having them stored on the client). However, what if we want a module to act client-side so that turret movement can be smoother?</p></i>
-            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">PersModule yet again has a native solution for this!</p>
-            <pre><code class="language-luau" id="codebox">repeat task.wait() until _G.PersModule -- Yield until PersModule is loaded
+                    <small><p style="color: rgb(53, 63, 71);font-family: 'Montserrat', sans-serif; padding-left: 30px;">An example of how you might want to do this - <b>for more information view utils >> downloader >> methods >> module.requireModule</b></p></small>
+                </div>
+
+                <div class="subSection core" style="opacity: 0; display: none;">
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Core Modules</h1>
+                    <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); "></div>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">PersModule's Core modules are protected, and have large impacts on user experience. Core module documentation may be lacking in this document due to security risks, compounded with the fact that they are likely exclusively used internally.</p>
+                    <div style="height: 10px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">MeFRegH Core Module</h1>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Core method in the Motor6D replication process - the majority of the documentation has been deliberately omitted to discourage harmful manipulation.</p>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>Core</b><b style="color: rgb(64, 157, 201)">.reg_gen</b> ()</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Returns a unique version 4 <a style="color: rgb(90, 138, 185);" href="https://en.wikipedia.org/wiki/Universally_unique_identifier"><abbr title="Globally Unique Identifier">GUID</abbr></a>.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div style="height: 10px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">WCPPoO Core Module</h1>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">This module handles object pooling.</p>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>Core</b><b style="color: rgb(64, 157, 201)">.srs_req_addto_tables</b> (InstanceToPool: Instance)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Defines a memory location in the internal dictionary system. This method call is <i>mostly</i> redundant as it is done automatically using Core.srs_req_downloadto_table(...) with ForceAddToMemory as true.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>Core</b><b style="color: rgb(64, 157, 201)">.srs_req_downloadto_table</b> (InstanceToPool: Instance, QuantityToPool: number?, ForceAddToMemory: boolean?)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Pools either one instance, or the quantity of instances defined. ForceAddToMemory as true does the same thing as Core.srs_req_addto_tables()</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>Core</b><b style="color: rgb(64, 157, 201)">.srs_req_pullderivedfrom_table</b> (InstanceToPool: Instance)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Removes an instance from the pool and returns it. If there are no items left in the pool, it will create a new instance.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>Core</b><b style="color: rgb(64, 157, 201)">.srs_req_returnderivedfrom_table</b> (InstanceToPool: Instance, InstanceToReturn: Instance)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Returns an item to the pool. If the item was never in the pool a warning will be outputted, and the item will be deleted.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>Core</b><b style="color: rgb(64, 157, 201)">.srs_req_removenum_table</b> (InstanceToPool: Instance, ForceRemoveInstances: {}, InitialQuantityToPool: number)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Removes pooled items from pooling system, and from system memory.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                </div>
+
+                <div class="subSection clients" style="opacity: 0; display: none;">
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">PersModule and clients</h1>
+                    <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); ">
+                    </div>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Usually, PersModule is never available on the client - because there would be no good reason to, <i>right?</i> Well, having a turret movement system on the client could make the turret more responsive, sooo... why won't we?</p>
+                    <div style="height: 10px;"></div>
+
+                    <pre><code class="language-luau codebox">repeat task.wait() until _G.PersModule -- Yield until PersModule is loaded
 local PersModule = _G.PersModule
-PersModule.utils.requireModuleClientSide("mouseFollow",player,{["origin"]="mouseFollowingSystem"})
--- say for instance we want the mouseFollow module on the client
+
+PersModule.utils.requireModuleClientSide("mouseFollow", player, { -- say for instance we want the mouseFollow module on the client
+    ["origin"] = "mouseFollowingSystem" 
+}) 
+
 -- client now has access to the module
 </code></pre>
-            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">An example of how you might want to do this - <b>for more information view utils >> downloader >> methods >> module.requireModuleClientSide</b></p></small>
-            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">BUT WAIT! The way that the global variable is formatted differs on the client.</p>
-            <i><p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">The client-side _G.PersModule variable is formatted in a way so that child modules no longer inherit their parent folder's name. </p></i>
-            <pre><code class="language-luau" id="codebox">repeat task.wait() until _G.PersModule -- Yield until PersModule is loaded
+                    <small><p style="color: rgb(53, 63, 71);font-family: 'Montserrat', sans-serif; padding-left: 30px;">An example of how you might want to do this - <b>for more information view utils >> downloader >> methods >> module.requireModuleClientSide</b></p></small>
+
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">_G.PersModule formatting on the Client</h1>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Due to the fact that we are requiring only one module on the Client, and not the entirety of PersModule, the name of the module's parent folder on the server is not easily available on the client. Therefore in the client's version of the PersModule global variable, the module's functions are listed under the module's name.</p>
+
+                    <pre><code class="language-luau codebox">repeat task.wait() until _G.PersModule -- Yield until PersModule is loaded
 local PersModule = _G.PersModule
+
 PersModule.mouseFollow.handleTraverse(targetCFrame, motor6d, root, traverse)
 -- For example, mouseFollow, a module which is commonly replicated to the client.
 </code></pre>
-            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">An example of how you would use _G.PersModule on the client.</b></p></small>
-        </div>
-        <div class="SubSection" id="persmodule" style="display:none">
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">_G.PersModule</h1>
-            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">So now we understand how to get _G.PersModule but, <b>what</b> is actually stored with _G.PersModule?</p>
-            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;position:relative;top:-7px;">If you haven't got a clue what _G.PersModule is, then it is recommended that you re-read the previous chapter..</p></small>
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <i><p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Within every category of module, there are many child modules. When the _G.PersModule variable is set, the functions from the child modules inherit the parent folder name.</p></i>
-            <img src="data/ExampleDirectory.png" style="float:left; border-radius: 10px;padding-left: 30px;position: relative;"alt="Example of a PersModule version's directory">
-            <div style="height:10px"></div>
-            <p style="color: rgb(204, 204, 204);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">_G.PersModule will compile the modules as:</p>
-            <small><p style="color: rgb(155, 155, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">mouseFollow functions would be listed under mouseFollowingSystem</p></small>
-            <small><p style="color: rgb(155, 155, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">controllerModule functions would be listed under seatSystems</p></small>
-            <small><p style="color: rgb(155, 155, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">mouseController functions would be listed under turretSystems</p></small>
-            <small><p style="color: rgb(155, 155, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">riggerModule functions would be listed under turretSystems</p></small>
-            <small><p style="color: rgb(155, 155, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">smoothSailor functions would be listed under turretSystems</p></small>
-            <small><p style="color: rgb(155, 155, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">downloader functions would be listed under utils</p></small>
-            <small><p style="color: rgb(155, 155, 155);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative">printFormat functions would be listed under utils</p></small>
-            <p style="color: rgb(204, 204, 204);font-family: 'Montserrat', sans-serif; padding-left: 303px; position:relative"><b>et cetera</b>, this pattern of child modules inheriting their parent's name when formatted into _G.PersModule will continue - <i>even for new modules added after this documentation is written.</i></p>
-            <div style="height:105px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Functionally:</h1>
-            <pre><code class="language-luau" id="codebox">local PersModule = _G.PersModule
-PersModule.seatSystems:init()
--- Function init from seatController module has inherited the folder name "seatSystems"</code></pre>
-            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">:init() is not a real function, do not attempt to utilise :init() in practice.</p></small>
-        </div>
-        <div class="SubSection" id="mouseFollow" style="display:none">
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">mouseFollow</h1>
-            <div class="deprecated" style="background-color: rgb(100, 100, 100); left:30px; width:60%; position: relative;border-radius: 10px;">
-                <img src="data/Issues.png" style="float:left; left: 5px;width: 30px; position: relative;" alt="Warning Icon">
-                <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 10px; top: 3px; position: relative;">Not completely functional</h1>
-                <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; left: 5px; position: relative;top:-12px">This module has been known to have issues - mouseFollow still remains stable, but function may not be completely satisfactory at the moment.</p>
-            </div>
-            <div class="deprecated" style="background-color: rgb(57, 126, 255); left:30px; width:60%; position: relative;border-radius: 10px;">
-                <img src="data/New.png" style="float:left; height: 50px; position: relative;" alt="Warning Icon">
-                <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 2px; top: 3px; position: relative;">New Module</h1>
-                <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; left: 2px; font-size:14px; position: relative;top:-12px">This module is new - it may have infastructure which differs from other modules</p>
-            </div>
-            <div class="deprecated" style="background-color: rgb(112, 36, 0); left:30px; width:60%; position: relative;border-radius: 10px;">
-                <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 10px; top: 3px; position: relative;">Object Oriented Programming</h1>
-                <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; left: 10px; font-size:14px; position: relative;top:-12px">The _G.PersModule copy of this module cannot be used.</p>
-            </div>
-            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">This module handles the CFrame of Motor6Ds in relation to the location of the mouse. mouseFollow was created to replace the deprecated module pair: smoothSailor and mouseController.</p>
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Methods</h1>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.handleTraverse</b> (targetCFrame: CFrame, motor6d: Motor6D, root: Part, traverse: boolean, args: {traverseSpeed: number?, limits: {}?, isGunReRigged: boolean?, manipulate: boolean?})</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Calculates the required amount to manipulate the traverse or elevation Motor6D and internally creates a smoothing solution. </p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.forceCancelTween</b> (motor6d: Motor6D)</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Forces the cancellation of the tweens in a Motor6D. Useful for when you do not have access to the module instance that was used to call <b style="color: rgb(64, 157, 201)">handleTraverse</b> originally.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.cancelTraverse</b> ()</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Forces the cancellation of all tweens associated with the module instance which called <b style="color: rgb(64, 157, 201)">handleTraverse</b> originally.</p>
-                <div style="height:2px"></div>
-            </div>
-        </div>
-        <div class="SubSection" id="controllerModule" style="display:none">
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">controllerModule</h1>
-            <div class="deprecated" style="background-color: rgb(112, 36, 0); left:30px; width:60%; position: relative;border-radius: 10px;">
-                <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 10px; top: 3px; position: relative;">Object Oriented Programming</h1>
-                <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; left: 10px; font-size:14px; position: relative;top:-12px">The _G.PersModule copy of this module cannot be used.</p>
-            </div>
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Methods</h1>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">:handleInteraction</b> ()</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Handles the interaction between the player and the Seat or ProximityPrompt. This method will have connections active until the player has exited the weapon.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">:initInteraction</b> (proximityPrompt:ProximityPrompt, model: Model | Folder, player:Player, requestedDeleted: {}, resetters: {}, returnEvent: BindableEvent, PersModuleInstance: Instance, options: {upAmount: number?})</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Sends all information required to the module for the interaction to be handled. Proximity prompt parameter can be left as nil - it is shown as mandatory in the parameter list as it is adapted from a deprecated (and removed) module.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Example</h1>
-            <pre><code class="language-luau" id="codebox">seatSystems:initInteraction(proximityPrompt, model, player, {newGUI, clone}, {}, nil, PersModule.seatSystems, {["upAmount"] = 1})
-seatSystems:handleInteraction()</code></pre>
-            <small><p style="color: rgb(75, 75, 75);font-family: 'Montserrat', sans-serif; padding-left: 30px;">There are many use cases for this controllerModule, and this is just one (sample code is simplified from a plane script).</p></small>
-        </div>
-        <div class="SubSection" id="mouseController" style="display:none">
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">mouseController</h1>
-            <div class="deprecated" style="background-color: rgb(255, 57, 57); left:30px; width:50%; position: relative;border-radius: 10px;">
-                <img src="data/Warning.png" style="float:left; width: 50px; position: relative;" alt="Warning Icon">
-                <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 2px; top: 3px; position: relative;">Deprecated</h1>
-                <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; left: 2px; position: relative;top:-12px">mouseController has been superceded by mouseFollow</p>
-            </div>
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Methods</h1>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.loadTraverseSys</b> (targetCFrame: CFrame, motor6d: Motor6D, root: Part, traverse: boolean, speed: number, limits: {}, extraArgs: {isGunReRigged: boolean?}?)</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Manipulates the traverse or elevation Motor6D.</p>
-                <div style="height:2px"></div>
-            </div>
-        </div>
-        <div class="SubSection" id="riggerModule" style="display:none">
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">riggerModule</h1>
-            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Colloquially recognised as "AutoRigger" - internally referred to as "rigger" to distinguish it from the original AutoRigger - <i>which is still being used on the Anti-Air where PersModule is responsible.</i></p>
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Tickets</h1>
-            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">RiggerModule utilises a format of many tables as its arguments.</p>
-            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Beneath each method the <b>unique</b> ticket format will be shown. It is <b>imperative</b> that this format is followed - or your model will <b>not</b> be rigged correctly. riggerModule will always infer parameters - <i>whether these interpretations are correct is up to how accurate your tickets are.</i></p>
-            <b style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">This is the only module in this library which actively infers parameters.</b>
+                    <small><p style="color: rgb(53, 63, 71);font-family: 'Montserrat', sans-serif; padding-left: 30px;">An example of how you would use PersModule's mouseFollow on the client.</b></p></small>
+                </div>
+                <div class="subSection mousefollow" style="opacity: 0; display: none;">
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">MouseFollow Module</h1>
+                    <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); "></div>
+                    <div style="height:25px"></div>
+                    <div class="deprecated" style="overflow-y: hidden;background-color: rgb(212, 104, 14); left:30px; width:calc(100% - 50px); position: relative;border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(255, 187, 131);">
+                        <h1 style="color: rgb(214, 125, 52);font-family: 'Montserrat', sans-serif; font-weight: 900;font-size: 75px; margin-left: 20px;top: clamp(-75px, -75px, -100%); position: absolute; text-align: center; z-index: 0;">OOP OOP OOP OOP OOP OOP OOP OOP</h1>
+                        <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; position: relative; z-index: 1; text-align: center; width: 100%;">This module should not be accessed from the global variable.</p>
+                    </div>  
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">This module handles the CFrame of Motor6Ds in relation to the location of the mouse. MouseFollow was created to replace the deprecated the module pair: smoothSailor and mouseController.</p>
+                    <div style="height: 10px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Methods</h1>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.handleTraverse</b> (targetCFrame: CFrame, motor6d: Motor6D, root: Part, traverse: boolean, args: {traverseSpeed: number?, limits: {}?, isGunReRigged: boolean?, manipulate: boolean?})</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Calculates the required amount to manipulate the traverse or elevation Motor6D and internally creates a smoothing solution.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.forceCancelTween</b> (motor6d: Motor6D)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Forces the cancellation of the tweens in a Motor6D. Useful for when you do not have access to the module instance that was used to call <b style="color: rgb(64, 157, 201)">handleTraverse</b> originally.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.cancelTraverse</b> ()</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Forces the cancellation of all tweens associated with the module instance which called <b style="color: rgb(64, 157, 201)">handleTraverse</b> originally.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                </div>
+                <div class="subSection controllermodule" style="opacity: 0; display: none;">
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">ControllerModule</h1>
+                    <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); ">
+                    </div>
+                    <div style="height:25px"></div>
+                    <div class="deprecated" style="overflow-y: hidden;background-color: rgb(212, 104, 14); left:30px; width:calc(100% - 50px); position: relative;border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(255, 187, 131);">
+                        <h1 style="color: rgb(214, 125, 52);font-family: 'Montserrat', sans-serif; font-weight: 900;font-size: 75px; margin-left: 20px;top: clamp(-75px, -75px, -100%); position: absolute; text-align: center; z-index: 0;">OOP OOP OOP OOP OOP OOP OOP OOP</h1>
+                        <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; position: relative; z-index: 1; text-align: center; width: 100%;">This module should not be accessed from the global variable.</p>
+                    </div>  
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Module tracks when a player sits in a seat, and when they leave. Optional arguments allow for GUI and LocalScripts to be distributed when a player sits, and for it to be removed when a player stands up.</p>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Please use <b>Seats</b> and not <b>VehicleSeats</b>.</p>
+                    <div style="height: 10px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Methods</h1>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">:handleInteraction</b> ()</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Handles the interaction between the player and the Seat or ProximityPrompt. This method will have connections active until the player has exited the weapon.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">:initInteraction</b> (proximityPrompt:ProximityPrompt, model: Model | Folder, player:Player, requestedDeleted: {}, resetters: {}, returnEvent: BindableEvent, PersModuleInstance: Instance, options: {upAmount: number?, seat: Seat? | VehicleSeat?})</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Sends all information required to the module for the interaction to be handled. Proximity prompt parameter can be left as nil - it is shown as mandatory in the parameter list as it is adapted from a deprecated (and removed) module.</p>
+                        <p style="color: rgb(143, 184, 189);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">If options["seat"] is not provided, PersModule will infer the model's primary seat - please provide the options["seat"] if your model has more than one seat.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                </div>
+                <div class="subSection mousecontroller" style="opacity: 0; display: none;">
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">MouseController</h1>
+                    <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); ">
+                    </div>
+                    <div style="height:25px"></div>
+                    <div class="deprecated" style="overflow-y: hidden;background-color: rgb(255, 0, 0); left:30px; width:calc(100% - 50px); position: relative;border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(255, 107, 107);">
+                        <img src="data/Warning.png" style="float:left; width: 65px; position: relative;" alt="Warning Icon">
+                        <h1 style="color: rgb(255, 54, 54);font-family: 'Montserrat', sans-serif; font-weight: 900;font-size: 75px; margin-left: 20px;top: clamp(-75px, -100%, -100%); position: absolute; text-align: center; z-index: 0;">DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED</h1>
+                        <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; position: relative; z-index: 1; text-align: center; width: calc(100% - 20px);">Superceded by <b>mouseFollow</b>. This module is deprecated and should not be utilised for new work.</p>
+                    </div>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Legacy module which used dot products to coarsely move a turret mounting towards the mouse.</p>
+                    <div style="height: 10px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Methods</h1>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.loadTraverseSys</b> (targetCFrame: CFrame, motor6d: Motor6D, root: Part, traverse: boolean, speed: number, limits: {}, extraArgs: {isGunReRigged: boolean?}?)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Manipulates the traverse or elevation Motor6D.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                </div>
+                <div class="subSection smoothsailor" style="opacity: 0; display: none;">
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">SmoothSailor</h1>
+                    <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); ">
+                    </div>
+                    <div style="height:25px"></div>
+                    <div class="deprecated" style="overflow-y: hidden;background-color: rgb(255, 0, 0); left:30px; width:calc(100% - 50px); position: relative;border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(255, 107, 107);">
+                        <img src="data/Warning.png" style="float:left; width: 65px; position: relative;" alt="Warning Icon">
+                        <h1 style="color: rgb(255, 54, 54);font-family: 'Montserrat', sans-serif; font-weight: 900;font-size: 75px; margin-left: 20px;top: clamp(-75px, -100%, -100%); position: absolute; text-align: center; z-index: 0;">DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED</h1>
+                        <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; position: relative; z-index: 1; text-align: center; width: calc(100% - 20px);">Superceded by <b>mouseFollow</b> and <b>riggerModule</b>. This module is deprecated and should not be utilised for new work.</p>
+                    </div>
+                    <div style="height:10px"></div>
+                    <div class="deprecated" style="overflow-y: hidden;background-color: rgb(212, 104, 14); left:30px; width:calc(100% - 50px); position: relative;border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(255, 187, 131);">
+                        <h1 style="color: rgb(214, 125, 52);font-family: 'Montserrat', sans-serif; font-weight: 900;font-size: 75px; margin-left: 20px;top: clamp(-75px, -75px, -100%); position: absolute; text-align: center; z-index: 0;">OOP OOP OOP OOP OOP OOP OOP OOP</h1>
+                        <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; position: relative; z-index: 1; text-align: center; width: 100%;">This module should not be accessed from the global variable.</p>
+                    </div> 
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Legacy module which was intended to be used in tandem with legacy module "mouseController" to smooth the coarse movement.</p>
+                    <div style="height: 10px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Methods</h1>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">:initRigGun</b> (part: Part, autoRigger: Script, position: string, kingRoot: Part?)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">This method is deprecated and should not be used for new work - <b style="color: rgb(64, 157, 201)">riggerModule</b> does everything that this module used to do. Creates a temporary part, useful for stopping Motor6Ds from turning on an offset.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">:isGunReRigged</b> ()</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">This is a deprecated method - use <i>markedGunIsRigged</i> instead. Returns whether a temporary part was created using smoothSailor. This method is not forward compatible with <b style="color: rgb(64, 157, 201)">riggerModule</b>.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.markedGunIsRigged</b> (requester: Script)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Changes the Motor6D which <b style="color: rgb(64, 157, 201)">mouseController</b> utilises.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                </div>
+                <div class="subSection riggermodule" style="opacity: 0; display: none;">
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">RiggerModule</h1>
+                    <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); ">
+                    </div>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Colloquially recognised as "AutoRigger" - internally referred to as "rigger" to distinguish it from the original AutoRigger - <i>which is still being used on the Anti-Air where PersModule is responsible.</i></p>
+                    <div style="height: 25px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Tickets</h1>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">RiggerModule utilises a format of many tables as its arguments.</p>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Beneath each method the <b>unique</b> ticket format will be shown. It is <b>imperative</b> that this format is followed - or your model will <b>not</b> be rigged correctly. riggerModule will always infer parameters - <i>whether these interpretations are correct is up to how accurate your tickets are.</i></p>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;"><b>This is the only module in this library which actively infers parameters.</b></p>
+                    <div style="height: 25px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Methods</h1>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.holdBodyModel</b> (Model: Model)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Anchors the entire model.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.releaseBodyModel</b> (Model: Model, exempt: {}?)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Unanchors the entire model except those BaseParts which are passed through the exempt dictionary.</p>
+                        <div style="height:2px"></div>
+                        <pre><code class="language-luau codebox">local exempt = {script.Parent.Mesh, script.Parent.Part, script.Parent.Union}</code></pre>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 30px; font-size: smaller;">An example which shows the expected format of the exempt parameter. riggerModule will not infer this parameter.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.assembleWelds</b> (tickets: {}, exclude: {})</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Welds entire models or folders together using <b>WeldConstraints</b>.</p>
+                        <div style="height:2px"></div>
+                        <pre><code class="language-luau codebox">local tickets = {
+    {
+        Cannon_Model, -- Model
+        Weld_To, -- Part
+        Weld_Parents, -- Any instance really
+    },
+    {
+        Turret_Model, -- Model
+        Weld_To, -- Part
+        Weld_Parents, -- Any instance really
+    },
+}</code></pre>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 30px; font-size: smaller;">An example which shows the expected format of the ticket.</p>
+                        <div style="height:2px"></div>
+                        <pre><code class="language-luau codebox">local exempt = {script.Parent.Mesh, script.Parent.Part, script.Parent.Union}</code></pre>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 30px; font-size: smaller;">An example which shows the expected format of the exempt parameter. riggerModule will not infer this parameter.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.assembleAltWelds</b> (tickets:{})</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Welds parts together using <b>Welds</b>.</p>
+                        <div style="height:2px"></div>
+                        <pre><code class="language-luau codebox">local tickets = {
+    ["Weld 1 Name"] = { -- Key name is the name of your Weld
+        Part0, -- BasePart
+        Part1, -- BasePart
+        Weld_Parents, -- Any instance really
+        CFrame.Angles(0,0,0) -- C1 offset (CFrame?)
+    },
+    ["Weld 2 Name"] = { -- Key name is the name of your Weld
+        Part0, -- BasePart
+        Part1, -- BasePart
+        Weld_Parents, -- Any instance really
+        CFrame.Angles(0,0,0) -- C1 offset (CFrame?)
+    },
+}</code></pre>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 30px; font-size: smaller;">An example which shows the expected format of the ticket.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.assembleMotor6D</b> (tickets:{})</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Creates a <b>Motor6D</b> between two parts.</p>
+                        <div style="height:2px"></div>
+                        <pre><code class="language-luau codebox">local tickets = {
+    ["Motor6D 1 Name"] = { -- Key name is the name of your Motor6D
+        Part0, -- BasePart
+        Part1, -- BasePart
+        Motor6D_Parent, -- Any instance really
+        CFrame.Angles(0,0,0) -- C1 offset (CFrame?)
+    },
+    ["Motor6D 2 Name"] = { -- Key name is the name of your Motor6D
+        Part0, -- BasePart
+        Part1, -- BasePart
+        Motor6D_Parent, -- Any instance really
+        CFrame.Angles(0,0,0) -- C1 offset (CFrame?)
+    },
+}</code></pre>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 30px; font-size: smaller;">An example which shows the expected format of the ticket.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.genTempPart</b> (tickets:{})</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Creates a temporary part, useful for stopping Motor6Ds from turning on an offset. This is akin to creating a new part to assist in manual Motor6D creation.</p>
+                        <div style="height:2px"></div>
+                        <pre><code class="language-luau codebox">local tickets = {
+    {
+        PartToClone, -- BasePart
+        Weld_Parents, -- Any instance really
+    },
+}</code></pre>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 30px; font-size: smaller;">An example which shows the expected format of the ticket.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.weldAllParts</b> (model: Model | Folder, ctrlPart: Part, folder: Folder?)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Used for welding planes together.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div style="height: 25px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Examples</h1>
+                    <pre><code class="language-luau codebox">repeat task.wait() until _G.PersModule
+local PersModule = _G.PersModule
+local constraints = Instance.new("Folder"); constraints.Parent = script.Parent
 
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Methods</h1>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.holdBodyModel</b> (kingmodel: Model)</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Anchors the entire model</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.releaseBodyModel</b> (kingmodel: Model, exempt: {}?)</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Unanchors the entire model except those BaseParts which are passed through the exempt dictionary</p>
-                <div style="height:2px"></div>
-                <pre><code class="language-luau" id="codebox">local exempt = {script.Parent.Mesh, script.Parent.Part, script.Parent.Union}</code></pre>
-                <p style="color: rgb(88, 88, 88);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: 10px;">An example which shows the expected format of the exempt parameter. riggerModule will not infer this parameter.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.assembleWelds</b> (tickets: {}, exclude: {})</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Welds entire models or folders together using <b>WeldConstraints</b></p>
-                <div style="height:2px"></div>
-                <pre><code class="language-luau" id="codebox">local tickets = {
-                    {
-                        Cannon_Model, -- Model
-		        Weld_To, -- Part
-		        Weld_Parents, -- Any instance really
-                    },
-                    {
-                        Turret_Model, -- Model
-		        Weld_To, -- Part
-		        Weld_Parents, -- Any instance really
-                    },
-                }</code></pre>
-                <p style="color: rgb(88, 88, 88);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: 10px;">An example which shows the expected format of the ticket.</p>
-                <div style="height:2px"></div>
-                <pre><code class="language-luau" id="codebox">local exempt = {script.Parent.Mesh, script.Parent.Part, script.Parent.Union}</code></pre>
-                <p style="color: rgb(88, 88, 88);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: 10px;">An example which shows the expected format of the exempt parameter. riggerModule will not infer this parameter.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.assembleAltWelds</b> (tickets:{})</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Welds parts together using <b>Welds</b></p>
+PersModule.turretSystems.holdBodyModel(script.Parent)
 
-                <div style="height:2px"></div>
-                <pre><code class="language-luau" id="codebox">local tickets = {
-                ["Weld 1 Name"] = { -- Key name is the name of your Weld
-                        Part0, -- BasePart
-		        Part1, -- BasePart
-		        Weld_Parents, -- Any instance really
-                        CFrame.Angles(0,0,0) -- C1 offset (CFrame?)
-                    },
-                ["Weld 2 Name"] = { -- Key name is the name of your Weld
-                        Part0, -- BasePart
-		        Part1, -- BasePart
-		        Weld_Parents, -- Any instance really
-                        CFrame.Angles(0,0,0) -- C1 offset (CFrame?)
-                    },
-                }</code></pre>
-                <p style="color: rgb(88, 88, 88);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: 10px;">An example which shows the expected format of the ticket.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.assembleMotor6D</b> (tickets:{})</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Creates a <b>Motor6D</b> between two parts</p>
+PersModule.turretSystems.genTempPart(
+	{
+		{
+			script.Parent.Cannon.Root,
+			script.Parent.Turret.TurretRing
+		},
+	}
+)
 
-                <div style="height:2px"></div>
-                <pre><code class="language-luau" id="codebox">local tickets = {
-                ["Motor6D 1 Name"] = { -- Key name is the name of your Motor6D
-                        Part0, -- BasePart
-		        Part1, -- BasePart
-		        Motor6D_Parent, -- Any instance really
-                        CFrame.Angles(0,0,0) -- C1 offset (CFrame?)
-                    },
-                ["Motor6D 2 Name"] = { -- Key name is the name of your Motor6D
-                        Part0, -- BasePart
-		        Part1, -- BasePart
-		        Motor6D_Parent, -- Any instance really
-                        CFrame.Angles(0,0,0) -- C1 offset (CFrame?)
-                    },
-                }</code></pre>
-                <p style="color: rgb(88, 88, 88);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: 10px;">An example which shows the expected format of the ticket.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.genTempPart</b> (tickets: {})</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Creates a temporary part, useful for stopping Motor6Ds from turning on an offset. This is akin to creating a new part to assist in manual Motor6D creation.</p>
-                <div style="height:2px"></div>
-                <pre><code class="language-luau" id="codebox">local tickets = {
-                    {
-                        PartToClone, -- BasePart
-		        Weld_Parents, -- Any instance really
-                    },
-                }</code></pre>
-                <p style="color: rgb(88, 88, 88);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: 10px;">An example which shows the expected format of the ticket.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.weldAllParts</b> (model: Model | Folder, ctrlPart: Part, folder: Folder?)</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Used for welding planes together</p>
-                <div style="height:2px"></div>
+PersModule.turretSystems.assembleWelds(
+	{
+		{script.Parent.Cannon.Parts, 
+			script.Parent.Cannon.Root, 
+			constraints
+		},
+		{script.Parent.Turret.Parts, 
+			script.Parent.Turret.TurretRing, 
+			constraints
+		}	
+	},
+	{
+		script.Parent.Cannon.Parts.Barrel1,
+		script.Parent.Cannon.Parts.Barrel2,
+		script.Parent.Cannon.Parts.Barrel3
+	}
+)
+
+PersModule.turretSystems.assembleAltWelds(
+	{
+		["Barrel1"] = {
+			script.Parent.Cannon.Root,
+			script.Parent.Cannon.Parts.Barrel1,
+			script.Parent.Cannon.Root
+		},
+		["Barrel2"] = {
+			script.Parent.Cannon.Root,
+			script.Parent.Cannon.Parts.Barrel2,
+			script.Parent.Cannon.Root
+		},
+		["Barrel3"] = {
+			script.Parent.Cannon.Root,
+			script.Parent.Cannon.Parts.Barrel3,
+			script.Parent.Cannon.Root
+		},
+	}
+)
+
+PersModule.turretSystems.assembleMotor6D(
+	{
+		["Root"] = {
+			script.Parent.Turret.TurretRing,
+			script.Parent.Cannon.Root,
+			script.Parent.Turret.TurretRing,
+		},
+		["BaseMotor"] = {
+			script.Parent.Base,
+			script.Parent.Turret.TurretRing,
+			script.Parent.Base,
+		},
+	}
+)
+
+PersModule.turretSystems.releaseBodyModel(script.Parent, {script.Parent.Base})
+</code></pre>
+                    <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">An example of a battleship turret being rigged by RiggerModule, in which the script is located in the root directory of the model.</p>
+                    <div style="height: 25px;"></div>
+                    <pre><code class="language-luau codebox">repeat task.wait() until _G.PersModule
+local PersModule = _G.PersModule
+local constraints = Instance.new("Folder"); constraints.Parent = script.Parent
+
+PersModule.turretSystems.weldAllParts(script.PlaneSystem, script.PlaneSystem.Root, Welds)
+PersModule.turretSystems.weldAllParts(script.Body, script.Body.Root, Welds)
+</code></pre>
+                    <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">An example of a plane being rigged by RiggerModule, in which the script is located in the root directory of the model.</p>
+                </div>
+                <div class="subSection downloader" style="opacity: 0; display: none;">
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Downloader</h1>
+                    <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); ">
+                    </div>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Downloader is a utility module that is used to safely interact with PersModule's core and modules at runtime.</p>
+                    <div style="height: 10px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Methods</h1>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.downloadAsset</b> (assetName: string, origin: string?)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Used for shorthanding the cloning of assets from PersModule.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.requireModule</b> (assetName: string, origin: string?)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Used for creating new instances of modules so that OOP can take place.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.requireModuleClientSide</b> (assetName: string, player: Instance, args: {store: boolean?, origin: string?, soft: boolean?, attribute: string?})</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Used for creating new instances of modules on the client. Cannot be called on client for obvious reasons.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                </div>
+                <div class="subSection printformat" style="opacity: 0; display: none;">
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">PrintFormat</h1>
+                    <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); ">
+                    </div>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Downloader is a utility module that is used to safely interact with PersModule's core and modules at runtime.</p>
+                    <div style="height: 10px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Methods</h1>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.beautifulPrint</b> (TableToPrint: {})</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Prints a table as it appears in the console</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.horrificWarnings</b> (TableToPrint: {})</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Prints a table as it appears in the console - except now it's all warnings.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.communicateClientError</b> (errormessage: string, player: Instance)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Communicates with the client to print a message.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                </div>
+                <div class="subSection moduleaa" style="opacity: 0; display: none;">
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">ModuleAA</h1>
+                    <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); ">
+                    </div>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Module which handles Anti-Aircraft weaponry's firing system.</p>
+                    <div style="height: 10px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Methods</h1>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">:reClassifyAAWeaponStatus</b> (IsWeaponFiring: boolean)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Sets the state of the firing loop on/off</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">:initAAInteraction</b> ()</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Set up the firing system.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">:handleAAFireInteraction</b> (model: Model, player: Player, firingParts: number, AAType: string, prefix: string, container: Instance, firingFreq: number)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Initates the firing loop.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                </div>
+                <div class="subSection radarinit" style="opacity: 0; display: none;">
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">init</h1>
+                    <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); ">
+                    </div>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Module which acts as a short-hand to interact with the Core Radar system.</p>
+                    <div style="height: 10px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Methods</h1>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.register</b> (Model: Model)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Sends a request to the Core Radar system. The Core Radar system will create a connection to all seats in the model, and will distribute a Radar interface to a player when they sit in any one of the seats in the model.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                </div>
+                <div>
+                    <div style="height:25px"></div>
+                    <div style="width: 100%; height: 1.5px; background-color: rgb(54, 62, 71); border-radius: 10px;"></div>
+                    <div style="height:25px"></div>
+                    <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">© 2026 thepersonone134</p>
+                    <div style="height:25px"></div>
+                </div>
             </div>
         </div>
-        <div class="SubSection" id="smoothSailor" style="display:none">
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">smoothSailor</h1>
-
-            <div class="deprecated" style="background-color: rgb(255, 57, 57); left:30px; width:50%; position: relative;border-radius: 10px;">
-                <img src="data/Warning.png" style="float:left; width: 50px; position: relative;" alt="Warning Icon">
-                <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 2px; top: 3px; position: relative;">Deprecated</h1>
-                <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; left: 2px; position: relative;top:-12px">smoothSailor has been superceded by riggerModule</p>
-            </div>
-            <div class="deprecated" style="background-color: rgb(112, 36, 0); left:30px; width:50%; position: relative;border-radius: 10px;">
-                <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 10px; top: 3px; position: relative;">Object Oriented Programming</h1>
-                <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; left: 10px; font-size:14px; position: relative;top:-12px">The _G.PersModule copy of this module cannot be used.</p>
-            </div>
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Methods</h1>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">:initRigGun</b> (part: Part, autoRigger: Script, position: string, kingRoot: Part?)</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">This method is deprecated and should not be used for new work - <b style="color: rgb(64, 157, 201)">riggerModule</b> does everything that this module ever did <i>but somehow better</i>. Creates a temporary part, useful for stopping Motor6Ds from turning on an offset.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">:isGunReRigged</b> (): boolean</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">This is a deprecated method - use <i>markedGunIsRigged</i> instead. Returns whether a temporary part was created using smoothSailor. This method is not forward compatible with <b style="color: rgb(64, 157, 201)">riggerModule</b>.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.markedGunIsRigged</b> (requester: Script)</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Changes the Motor6D which <b style="color: rgb(64, 157, 201)">mouseController</b> utilises.</p>
-                <div style="height:2px"></div>
-            </div>
-        </div>
-        <div class="SubSection" id="downloader" style="display:none">
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">downloader</h1>
-            <p style="color: rgb(153, 153, 153);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Downloader is a utility module that is used to safely interact with PersModule's modules at runtime.</p>
-
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Methods</h1>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.downloadAsset</b> (assetName: string, origin: string?): Instance | nil</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Clones the requested asset from PersModule's assets.</p>
-<p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;"><b>If no origin is specified</b>, downloader will look at the top of the asset hierarchy. It is acceptable to not include an origin parameter as a shorthand, but it is not recommended.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.requireModule</b> (assetName: string, origin: string?): {} | nil</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Requires a copy of a PersModule module.</p>
-<p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;"><b>If no origin is specified</b>, downloader will look at the top of the module hierarchy. It is acceptable to not include an origin parameter as a shorthand, but it is not recommended.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.requireModuleClientSide</b> (assetName: string, player: Instance, args: {store: boolean?, origin: string?})</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Do not share modules with clients unless it is a necessity.</p>
-<p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;"><b>If no origin is specified</b>, downloader will look at the top of the module hierarchy. It is acceptable to not include an origin parameter as a shorthand, but it is not recommended.</p>
-                <div style="height:2px"></div>
-            </div>
-        </div>
-        <div class="SubSection" id="printFormat" style="display:none">
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">printFormat</h1>
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Methods</h1>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.beautifulPrint</b> (tableToPrint: {})</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Prints the table as it appears in the Roblox Studio console - <i><b>BEAUTIFUL!</b></i></p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.communicateClientError</b> (error: string, player: Instance)</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Sends the error data to the client, which can be useful for debugging.</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">This function automatically adds the Unix Time from when the server sent the message.</p>
-                <div style="height:2px"></div>
-            </div>
-        </div>
-        <div class="SubSection" id="ModuleAA" style="display:none">
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">ModuleAA</h1>
-            <div class="deprecated" style="background-color: rgb(112, 36, 0); left:30px; width:60%; position: relative;border-radius: 10px;">
-                <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 10px; top: 3px; position: relative;">Object Oriented Programming</h1>
-                <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; left: 10px; font-size:14px; position: relative;top:-12px">The _G.PersModule copy of this module cannot be used.</p>
-            </div>
-            <div style="height:20px"></div>
-            <div style="background-color: rgb(53, 53, 53);width: calc(100vw - 220px); height: 2px; border-radius: 10px;"></div>
-            <div style="height:20px"></div>
-            <h1 style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Methods</h1>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">:reClassifyAAWeaponStatus</b> (status: boolean)</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Internally turns a weapon's state to firing or disabled.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">:initAAInteraction</b> ()</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Sets up the AA interaction by creating the table required for operations.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">:handleAAFireInteraction</b> (model: Model, player: Player, firingParts: number, AAType: string, prefix: string, container: Instance, firingFreq: number)</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Interfaces with Breadi's AA bullet system.</p>
-                <div style="height:2px"></div>
-            </div>
-            <div>
-                <p style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; padding-left: 30px;"><b>module</b><b style="color: rgb(64, 157, 201)">.getCharacterFromHit</b> (hitPart)</p>
-                <p style="color: rgb(201, 201, 201);font-family: 'Montserrat', sans-serif; padding-left: 30px;font-size: smaller;">Old function ripped right from Breadi's old AA, which is required to stop errors from spamming the console.</p>
-                <div style="height:2px"></div>
-            </div>
-        </div>
-        <div id="sidechick">
-            <h3 id="title">PersModule</h3>
-            <div class="sidebuttons">
-                <button class="sidebuttons" id="Introduction" style="position:fixed; left: 10px;top:100px; width: 200px">Introduction</button>
-                <button class="sidebuttons" id="persmodule" style="position:fixed; left: 10px;top:120px; width: 200px">_G.PersModule</button>
-                <button class="sidebuttons" id="complexities" style="position:fixed; left: 10px;top:140px; width: 200px">Complexities</button>
-
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:205px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">mouseFollowingSystem<button>
-                <button class="sidebuttons" id="mouseFollow" style="position:fixed; left: 10px;top:225px; width: 200px">mouseFollow</button>
-
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:265px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">seatSystems<button>
-                <button class="sidebuttons" id="controllerModule" style="position:fixed; left: 10px;top:285px; width: 200px">controllerModule</button>
-
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:335px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">turretSystems<button>
-                <button class="sidebuttons" id="mouseController" style="position:fixed; left: 10px;top:355px; width: 200px">mouseController</button>
-                <button class="sidebuttons" id="riggerModule" style="position:fixed; left: 10px;top:375px; width: 200px">riggerModule</button>
-                <button class="sidebuttons" id="smoothSailor" style="position:fixed; left: 10px;top:395px; width: 200px">smoothSailor</button>
-
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:445px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">utils</button>
-                <button class="sidebuttons" id="downloader" style="position:fixed; left: 10px;top:465px; width: 200px">downloader</button>
-                <button class="sidebuttons" id="printFormat" style="position:fixed; left: 10px;top:485px; width: 200px">printFormat</button>
-
-                <button class="sidebuttons" style="position:fixed; left: 10px;top:535px; width: 200px; color:rgb(107, 201, 255); font-weight: 300;">weaponsSystems</button>
-                <button class="sidebuttons" id="ModuleAA" style="position:fixed; left: 10px;top:555px; width: 200px">ModuleAA</button>
-            </div>
-        </div>
-        <div id="line"></div>
-        <div id="line" style="top: 180px;"></div>
     </body>
     <script src="src/backend.js"></script>
 </html>

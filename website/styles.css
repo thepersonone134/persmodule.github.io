@@ -1,122 +1,90 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500;600;700;800&display=swap');
 
-/*
-500 - Medium
-600 - Semi Bold
-700 - Bold
-800 - More Bold
-*/
-
-#withinbox {
-    background-color: rgb(25, 25, 25);
-    position:fixed;
-    width: calc(100vw - 20px);
-    height: calc(100vh - 20px);
-    left: 10px;
-    top: 10px;
-    border-radius: 10px;
-    z-index: 1;
-}
-#codebox {
-    border-radius: 10px;
-    margin-left: 30px;
-    width: calc(100% - 90px)
-}
-.adjusted {
-    position: relative;
-    top: -275px;
-}
-
-#title {
-    color: rgb(255,255,255);
-    text-align: center;
+html {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
 }
 
-.SubSection {
-    position:fixed;
-    top: 10px;
-    left: 210px;
-    width: calc(100vw - 220px);
-    height: calc(100vh - 20px);
-    z-index: 4;
-    overflow-y:auto;
+html div {
     overflow-x: hidden;
 }
 
-.sidebuttons {
-    color: rgb(255,255,255);
+.subSection {
+    height: 100%;
+    width: 100%;
+}
+
+.codebox {
+    margin-left: 25px;
+    margin-right: 25px;
+    background-color: rgb(4, 19, 26);
+    outline-width: 1.5px;
+    outline-color: rgb(60, 81, 90);
+    outline-style: solid;
+    border-radius: 10px;
+}
+
+#titlePersModule {
+    color: rgb(222, 245, 255);
+    font-size: 25px;
+    font-weight: 800;
+    width: 100%;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
+    top: -14px;
+    position: relative;
+    cursor: pointer;
+}
+
+.listAsNormalButtons li{
+    list-style: none;
+    padding-left: 12px;
+    color: rgb(169, 229, 255);
     font-weight: 500;
 }
 
-#sidechick {
-    background-color: rgb(35, 35, 35);
-    position:fixed;
-    left: 10px;
-    top: 10px;
-    height: calc(100vh - 20px);
-    width: 200px;
-    border-radius: 10px;
-    z-index: 3;
+.sidebuttons {
+    cursor: pointer;
 }
 
-#line {
-    position:fixed;
-    height: 2px;
-    left: 36px;
-    top: 75px;
-    width: 150px;
+.aLine {
+    background-color: rgb(126, 135, 145);
     border-radius: 10px;
-    background-color: rgb(125, 125, 125);
-    z-index: 4;
 }
 
-/*
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-}*/
+.textLeftLargerSide {
+    color: rgb(169, 229, 255);
+    padding-left: 12px;
+    font-weight: 600;
+}
 
-body {
-    font-family: 'Montserrat', sans-serif;
+.textLeftSmallerSide {
+    color: rgb(150, 199, 219);
+    padding-left: 12px;
     font-weight: 500;
-    background-color: rgb(20,20,20);
 }
 
-button {
-    background-color: rgb(35,35,35);
-    border: none;
+.listAsNormalButtons {
+    padding: 0px;
+    top: -13px;
 }
-/*
-<p style="color: rgb(255,255,255);font-family: 'Montserrat', sans-serif; padding-left: 30px;">Hello mates</p>
 
-<div id="top">
-            <h1>PersModule Documentation</h1>
-        </div>
+::-webkit-scrollbar {
+  width: 2px;
+}
 
+::-webkit-scrollbar-track {
+  background: rgb(36, 50, 65);
+  border-radius: 10px;
+}
 
-Deprecated
-<div class="deprecated" style="background-color: rgb(255, 57, 57); left:30px; width:50%; height: 50px; position: relative;border-radius: 10px;">
-                <img src="../data/Warning.png" style="float:left; width: 50px; position: relative;" alt="Warning Icon">
-                <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 2px; top: 3px; position: relative;">Deprecated</h1>
-                <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; left: 2px; position: relative;top:-12px">mouseFollow has been superceded by mouseFollow</p>
-            </div>
+::-webkit-scrollbar-thumb {
+  background: rgb(156, 194, 233);
+  border-radius: 10px;
+}
 
-New Module
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(191, 223, 255);
+}
 
-<div class="deprecated" style="background-color: rgb(57, 126, 255); left:30px; width:60%; height: 50px; position: relative;border-radius: 10px;">
-                <img src="../data/New.png" style="float:left; height: 50px; position: relative;" alt="Warning Icon">
-                <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 2px; top: 3px; position: relative;">New Module</h1>
-                <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; left: 2px; font-size:14px; position: relative;top:-12px">This module is new - it may have infastructure which differs from other modules</p>
-            </div>
-
-OOP
-<div class="deprecated" style="background-color: rgb(112, 36, 0); left:30px; width:60%; height: 50px; position: relative;border-radius: 10px;">
-                <h1 style="color: rgb(255, 255, 255);font-family: 'Montserrat', sans-serif; font-size:20px; left: 10px; top: 3px; position: relative;">Object Oriented Programming</h1>
-                <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; left: 10px; font-size:14px; position: relative;top:-12px">The _G.PersModule copy of this module cannot be used.</p>
-            </div>
+[title] {
+    cursor: help;
+}
