@@ -12,7 +12,6 @@ async function TweenColour(div, destination, time) {
 
     let c = backgroundcolour.split(",")
     let r = String(c[0]); let g = String(c[1]); let b = String(c[2]);
-    console.log(r,g,b)
 
     r = Number(r.split("rgb(")[1]); g = Number(g); b = Number(b.split(")")[0])
 
@@ -61,7 +60,6 @@ async function TweenOpacity(div, destination, time) {
 async function TweenPagePos(time) {
     let scrollpos = document.getElementById("Holder").scrollTop
     let absStart = performance.now();
-    console.log(scrollpos)
 
     function LogicLoop() {
         let start = performance.now();
@@ -116,11 +114,9 @@ elements.forEach(element => {
 
             subsection[0].style.display = "inline-block";
             if (subsection[0].scrollHeight > subsection[0].clientHeight) {
-                console.log("True")
                 BackToTop[0].style.display = "inline";
                 TweenOpacity(BackToTop[0], 2, .3);
             } else {
-                console.log(subsection[0].scrollHeight, subsection[0].clientHeight)
                 TweenOpacity(BackToTop[0], -1, .3);
                 delay(300)
                 BackToTop[0].style.display = "none";
