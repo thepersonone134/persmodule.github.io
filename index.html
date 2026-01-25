@@ -90,9 +90,9 @@
                 <div class="aLine printformat" style="width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
                 <p class="textLeftSmallerSide sidebuttons printformat" style="margin-left: 25px;">printFormat</p>
 
-                <p class="textLeftLargerSide"><abbr title="weaponsSystems">weapons</abbr></p>
+                <p class="textLeftLargerSide">weapons</p>
                 <div class="aLine moduleaa" style="width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
-                <p class="textLeftSmallerSide sidebuttons moduleaa" style="margin-left: 25px;">ModuleAA</p>
+                <p class="textLeftSmallerSide sidebuttons moduleaa" style="margin-left: 25px;">handleAA</p>
 
                 <p class="textLeftLargerSide">radar</p>
                 <div class="aLine radarinit" style="width: 2px; height: 20px; margin-left: 17px; float: left;"></div>
@@ -487,11 +487,11 @@ PersModule.turretSystems.genTempPart(
 
 PersModule.turretSystems.assembleWelds(
 	{
-		{script.Parent.Cannon.Parts, 
-			script.Parent.Cannon.Root, 
-			constraints
+		{   script.Parent.Cannon.Parts, 
+		    script.Parent.Cannon.Root, 
+		    constraints
 		},
-		{script.Parent.Turret.Parts, 
+		{   script.Parent.Turret.Parts, 
 			script.Parent.Turret.TurretRing, 
 			constraints
 		}	
@@ -601,24 +601,48 @@ PersModule.turretSystems.weldAllParts(script.Body, script.Body.Root, Welds)
                     <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">ModuleAA</h1>
                     <div style="overflow-y: hidden; background-color: rgb(36, 50, 65); width: calc(100% - 40px); left: 20px; position: relative; border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(54, 62, 71); ">
                     </div>
+                    <div style="height: 25px;"></div>
+                    <div class="deprecated" style="overflow-y: hidden;background-color: rgb(57, 126, 255); left:30px; width: calc(100% - 50px); position: relative;border-radius: 10px; outline-style: solid; outline-width: 1.5px; outline-color: rgb(161, 194, 255);">
+                        <h1 style="color: rgb(75, 138, 255);font-family: 'Montserrat', sans-serif; font-weight: 900;font-size: 75px; margin-left: 20px;top: -100%; position: absolute; text-align: center; z-index: 0;">NEW NEW NEW NEW NEW NEW NEW NEW</h1>
+                        <p style="color: rgb(238, 238, 238);font-family: 'Montserrat', sans-serif; font-size:14px; position: relative; z-index: 1; text-align: center; width: 100%;">This module was newly added to the PersModule library - it may have infastructure which differs from other modules.</p>
+                    </div>
                     <p style="color: rgb(222, 245, 255); width: calc(100% - 50px); padding-left: 25px;">Module which handles Anti-Aircraft weaponry's firing system.</p>
                     <div style="height: 10px;"></div>
                     <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Methods</h1>
                     <div>
-                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">:reClassifyAAWeaponStatus</b> (IsWeaponFiring: boolean)</p>
-                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Sets the state of the firing loop on/off</p>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.new</b> (Args: {Model: Model, FiringParts: number, Type: string, FirePartPrefix: string, FirePartContainer: Instance, FiringFrequency: number, Team: number})</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Creates an instance of the module so that OOP can take place.</p>
                         <div style="height:2px"></div>
                     </div>
                     <div>
-                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">:initAAInteraction</b> ()</p>
-                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Set up the firing system.</p>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">.viewData</b> ()</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Returns all bullet, dispersion, velocity, gravity, and damage information about the bullet types.</p>
                         <div style="height:2px"></div>
                     </div>
                     <div>
-                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">:handleAAFireInteraction</b> (model: Model, player: Player, firingParts: number, AAType: string, prefix: string, container: Instance, firingFreq: number)</p>
-                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Initates the firing loop.</p>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">:reClassifyAAWeaponStatus</b> (State: boolean?, OutCFrames: {}?)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Changes the state of the firing loop, and updates the CFrame information about the out parts.</p>
                         <div style="height:2px"></div>
                     </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">:maintainConnection</b> (OutCFrames: {}?)</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Updates the CFrame information about the out parts.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div>
+                        <p style="color: rgb(222, 245, 255);font-family: 'Montserrat', sans-serif; padding-left: 25px;"><b>module</b><b style="color: rgb(64, 157, 201)">:handleFire</b> ()</p>
+                        <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">Starts the firing loop.</p>
+                        <div style="height:2px"></div>
+                    </div>
+                    <div style="height: 25px;"></div>
+                    <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">Examples</h1>
+                    <pre><code class="language-luau codebox">repeat task.wait() until _G.PersModule
+local PersModule = _G.PersModule
+
+local WeaponInstance = PersModule.weapons.new( ... )
+print(WeaponInstance.viewData())
+</code></pre>
+                    <p style="color: rgb(88, 114, 117);font-family: 'Montserrat', sans-serif; padding-left: 25px;font-size: smaller;">An example of creating a new instance of the module, and printing the data about the bullet types.</p>
                 </div>
                 <div class="subSection radarinit" style="opacity: 0; display: none;">
                     <h1 style="color: rgb(222, 245, 255); padding-left: 25px;">init</h1>
