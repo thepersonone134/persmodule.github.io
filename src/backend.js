@@ -47,13 +47,15 @@ class TweenInfo {
 }
 
 class Tween {
-    constructor(object, tweeninfo, goal, org, setter) {
+    constructor(object, tweeninfo, goal, org, setter, callbacksetup = {} ) {
         this.object = object;
         this.tweendata = tweeninfo;
         this.goal = goal;
         this.org = org;
         this.setter = setter;
         this.init = null;
+        this.callback = callbacksetup["callbackFunc"]
+        this.callbackargs = callbacksetup["callbackArgs"]
 
         this.step = this.step.bind(this);
     }
@@ -64,14 +66,18 @@ class Tween {
         let percentiletravel = (elapsed-this.init)/(this.tweendata.time*1000);
         if (percentiletravel >= 1) {
             this.setter(this.object, this.goal);
+            if (this.callback != null && this.callbackargs != null) {
+                this.callback(this.callbackargs)
+            }
             return;
         }
 
         let changes = [];
         for (let i = 0; i < this.org.length; i++) {
-            let asgoal = this.goal[i];
-            let asorg = this.org[i];
+            let asgoal = Number(this.goal[i]);
+            let asorg = Number(this.org[i]);
 
+            console.log(asorg + ((asgoal-asorg) * this.tweendata.easing[0][this.tweendata.easing[1]](percentiletravel)))
             changes[i] = asorg + ((asgoal-asorg) * this.tweendata.easing[0][this.tweendata.easing[1]](percentiletravel));
         }
         
@@ -82,6 +88,12 @@ class Tween {
     play() {
         requestAnimationFrame(this.step)
     };
+}
+
+function setdisplaystype(args = {} ) {
+    if (args["element"] != null && args["state"] != null && args["property"]) {
+        args["element"].style[args["property"]] = args["state"];
+    }
 }
 
 function threevariables(object) {
@@ -95,7 +107,7 @@ function threevariables(object) {
 
 BackToTop[0].addEventListener("click",
     function() {
-        let tweeninfo = new TweenInfo(1, "SineInOut")
+        let tweeninfo = new TweenInfo(.3, "SineInOut")
         let tween = new Tween(document.getElementById("Holder"), tweeninfo, [0], [document.getElementById("Holder").scrollTop], TweenGenericSetters.pagepos)
 
         tween.play()
@@ -111,13 +123,9 @@ let rejectrisk = document.getElementById("RejectRiskButtonPrompt");
 acceptrisk.addEventListener("click",
     function() {
         let noticetweeninfo = new TweenInfo(.3, "SineOut")
-        new Tween(confirm, noticetweeninfo, [1], [confirm.style.opacity], TweenGenericSetters.opacity);
-
-        delay(300);
-
-        confirm.style.display = "none";
-        options.style.display = "none";
-    }
+        new Tween(confirm, noticetweeninfo, [0], [confirm.style.opacity], TweenGenericSetters.opacity, { "callbackFunc": setdisplaystype, "callbackArgs": {"element": confirm, "state": "none", "property": "display" } } ).play();
+        new Tween(options, noticetweeninfo, [0], [options.style.opacity], TweenGenericSetters.opacity, { "callbackFunc": setdisplaystype, "callbackArgs": {"element": options, "state": "none", "property": "display" } } ).play();
+    } 
 )
 
 rejectrisk.addEventListener("click",
@@ -139,7 +147,8 @@ Elements.forEach(element => {
                 let noticetweeninfo = new TweenInfo(.3, "SineInOut")
                 confirm.style.display = "block";
                 options.style.display = "flex";
-                new Tween(confirm, noticetweeninfo, [0.8], [confirm.style.opacity], TweenGenericSetters.opacity);
+                new Tween(confirm, noticetweeninfo, [0.8], [confirm.style.opacity], TweenGenericSetters.opacity).play();
+                new Tween(options, noticetweeninfo, [1], [confirm.style.opacity], TweenGenericSetters.opacity).play();
             }
 
             let pastLine = document.querySelector(`.aLine.${PastData.SectionData}`);
