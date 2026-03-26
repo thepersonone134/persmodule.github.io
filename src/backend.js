@@ -147,7 +147,7 @@ Elements.forEach(element => {
                 let noticetweeninfo = new TweenInfo(.3, "SineInOut")
                 confirm.style.display = "block";
                 options.style.display = "flex";
-                new Tween(confirm, noticetweeninfo, [0.8], [confirm.style.opacity], TweenGenericSetters.opacity).play();
+                new Tween(confirm, noticetweeninfo, [0.85], [confirm.style.opacity], TweenGenericSetters.opacity).play();
                 new Tween(options, noticetweeninfo, [1], [confirm.style.opacity], TweenGenericSetters.opacity).play();
             }
 
